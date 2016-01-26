@@ -1,0 +1,40 @@
+{
+  "name": "material-toggle-button",
+  "version": "1.0.0",
+  "authors": [
+    "Vincent Guillou <vin.guillou@gmail.com>"
+  ],
+  "description": "A Material design inspired toggle button, based on the original Material design paper-button by the Polymer team",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "toggle",
+    "button"
+  ],
+  "main": "material-toggle-button.html",
+  "license": "MIT",
+  "homepage": "https://vguillou.github.io/webcomponents/material-toggle-button",
+  "ignore": [
+    "/.*",
+    "bower_components",
+    "/test/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vguillou/material-toggle-button.git"
+  },
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.3",
+    "paper-ripple": "polymerelements/paper-ripple#^1.0.0",
+    "paper-behaviors": "polymerelements/paper-behaviors#^1.0.0",
+    "iron-flex-layout": "polymerelements/iron-flex-layout#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.4",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "iron-icon": "polymerelements/iron-icon#^1.0.0",
+    "iron-icons": "polymerelements/iron-icons#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  }
+}

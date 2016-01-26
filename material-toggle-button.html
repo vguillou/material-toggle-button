@@ -1,0 +1,183 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-behaviors/iron-button-state.html">
+<link rel="import" href="../paper-behaviors/paper-ripple-behavior.html">
+
+<!--
+`material-toggle-button` is a Material design inspired toggle button.
+It is based on the original Material design
+[paper-button](https://elements.polymer-project.org/elements/paper-button) by the Polymer team.
+When the user touches the button, a ripple effect emanates from the point of contact.
+
+Example:
+
+    <material-toggle-button>toggle toggle</material-toggle-button>
+    <material-toggle-button noink>No ripple effect</material-toggle-button>
+
+A button toggle will remain `active` after being clicked (and
+will have an `active` attribute set). For more information, see the `Polymer.IronButtonState`
+behavior.
+
+You may use custom DOM in the button body to create a variety of buttons. For example, to
+create a button with an icon and some text:
+
+    <material-toggle-button>
+      <iron-icon icon="favorite"></iron-icon>
+      custom button content
+    </material-toggle-button>
+
+### Styling
+
+The following custom properties and mixins are also available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--material-toggle-button-active-color` | Color of the button when active | `var(--paper-green-600)`
+`--material-toggle-button-inactive-color` | Color of the button when inactive | `transparent`
+`--material-toggle-button` | Mixin applied to the button | `{}`
+`--material-toggle-button-disabled` | Mixin applied to the disabled button toggle. Note that you can also use the `material-toggle-button[disabled]` selector | `{}`
+`--material-toggle-button-keyboard-focus` | Mixin applied to a button toggle after it's been focused using the keyboard | `{}`
+
+@demo demo/index.html
+-->
+
+<dom-module id="material-toggle-button">
+  <template strip-whitespace>
+
+    <style>
+      :host {
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
+        min-width: 5.14em;
+        margin: 0 0.29em;
+        text-align: center;
+        font: inherit;
+        background: transparent;
+        text-transform: uppercase;
+        outline-width: 0;
+        border-radius: 3px;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        z-index: 0;
+        border-radius: 18px;
+        padding: 0.4em 1.6em;
+
+        -webkit-transition: background 200ms ease-in;
+        -moz-transition: background 200ms ease-in;
+        -ms-transition: background 200ms ease-in;
+        -o-transition: background 200ms ease-in;
+        transition: background 200ms ease-in;
+
+        @apply(--material-toggle-button);
+      }
+
+      :host(:not([disabled])) {
+        background-color: var(--material-toggle-button-active-color, --paper-green-600);
+        color: var(--material-toggle-button-inactive-color, white);
+      }
+
+      :host(.keyboard-focus) {
+        font-weight: bold;
+        @apply(--material-toggle-button-keyboard-focus);
+      }
+
+      :host([disabled]) {
+        background: #eaeaea;
+        color: #a8a8a8;
+        cursor: auto;
+        pointer-events: none;
+        @apply(--material-toggle-button-disabled);
+      }
+
+      :host(:not([disabled]):not([active])) {
+        background-color: var(--material-toggle-button-inactive-color, transparent) !important;
+        color: var(--material-toggle-button-active-color, --paper-green-600);
+      }
+
+      :host > ::content * {
+        text-transform: inherit;
+      }
+    </style>
+    <content></content>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'material-toggle-button',
+
+    behaviors: [
+      Polymer.IronButtonState,
+      Polymer.IronControlState,
+      Polymer.PaperRippleBehavior
+    ],
+
+    observers: [
+      '_computeKeyboardClass(receivedFocusFromKeyboard)'
+    ],
+
+    hostAttributes: {
+      role: 'button',
+      tabindex: '0',
+      toggles: true,
+      raised: false,
+      animated: false,
+      elevation: false
+    },
+
+    _computeKeyboardClass: function(receivedFocusFromKeyboard) {
+      this.classList.toggle('keyboard-focus', receivedFocusFromKeyboard);
+    },
+
+    /**
+     * In addition to `IronButtonState` behavior, when space key goes down,
+     * create a ripple down effect.
+     *
+     * @param {!KeyboardEvent} event .
+     */
+    _spaceKeyDownHandler: function(event) {
+      Polymer.IronButtonStateImpl._spaceKeyDownHandler.call(this, event);
+      if (this.hasRipple()) {
+        this._ripple.uiDownAction();
+      }
+    },
+
+    /**
+     * In addition to `IronButtonState` behavior, when space key goes up,
+     * create a ripple up effect.
+     *
+     * @param {!KeyboardEvent} event .
+     */
+    _spaceKeyUpHandler: function(event) {
+      Polymer.IronButtonStateImpl._spaceKeyUpHandler.call(this, event);
+      if (this.hasRipple()) {
+        this._ripple.uiUpAction();
+      }
+    }
+  
+    /**
+    Fired when the animation finishes.
+    This is useful if you want to wait until
+    the ripple animation finishes to perform some action.
+
+    @event transitionend
+    @param {{node: Object}} detail Contains the animated node.
+    */
+  });
+</script>
