@@ -15,3 +15,8 @@ use this command
 Please refer to the <a href="https://vguillou.github.io/webcomponents/material-toggle-button">component page</a> for more informations.
 
 Demos available <a href="https://vguillou.github.io/webcomponents/material-toggle-button/demo">here</a>.
+
+
+## License
+
+[MIT License](https://github.com/vguillou/material-toggle-button/blob/master/LICENSE.md)
