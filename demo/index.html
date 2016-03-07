@@ -36,74 +36,75 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <body unresolved>
     <div class="vertical-section-container centered">
 
-    <h3>Buttons can be inactive, active or disabled</h3>
-    <demo-snippet class="centered-demo">
-      <template>
-        <material-toggle-button>inactive</material-toggle-button>
-        <material-toggle-button active>active</material-toggle-button>
-        <material-toggle-button disabled>disabled</material-toggle-button>
-      </template>
-    </demo-snippet>
+      <h3>Buttons can be inactive, active or disabled</h3>
+      <demo-snippet class="centered-demo">
+        <template>
+          <material-toggle-button>inactive</material-toggle-button>
+          <material-toggle-button active>active</material-toggle-button>
+          <material-toggle-button disabled>disabled</material-toggle-button>
+        </template>
+      </demo-snippet>
 
-    <h3>Buttons can have icons</h3>
-    <demo-snippet class="centered-demo">
-      <template>
-        <material-toggle-button>
-          <iron-icon icon="check"></iron-icon>inactive
-        </material-toggle-button>
-        <material-toggle-button active>
-          <iron-icon icon="file-download"></iron-icon>active
-        </material-toggle-button>
-        <material-toggle-button disabled>
-          <iron-icon icon="block"></iron-icon>disabled
-        </material-toggle-button>
-      </template>
-    </demo-snippet>
+      <h3>Buttons can have icons</h3>
+      <demo-snippet class="centered-demo">
+        <template>
+          <material-toggle-button>
+            <iron-icon icon="check"></iron-icon>inactive
+          </material-toggle-button>
+          <material-toggle-button active>
+            <iron-icon icon="file-download"></iron-icon>active
+          </material-toggle-button>
+          <material-toggle-button disabled>
+            <iron-icon icon="block"></iron-icon>disabled
+          </material-toggle-button>
+        </template>
+      </demo-snippet>
 
-    <h3>Buttons can hide the ripple effect using the <i>noink</i> attribute</h3>
-    <demo-snippet class="centered-demo">
-      <template>
-        <material-toggle-button noink>inactive</material-toggle-button>
-        <material-toggle-button active noink>active</material-toggle-button>
-        <material-toggle-button disabled noink>disabled</material-toggle-button>
-      </template>
-    </demo-snippet>
+      <h3>Buttons can hide the ripple effect using the <i>noink</i> attribute</h3>
+      <demo-snippet class="centered-demo">
+        <template>
+          <material-toggle-button noink>inactive</material-toggle-button>
+          <material-toggle-button active noink>active</material-toggle-button>
+          <material-toggle-button disabled noink>disabled</material-toggle-button>
+        </template>
+      </demo-snippet>
 
-    <h3>Buttons can be styled using custom properties</h3>
-    <demo-snippet class="centered-demo">
-      <template>
-        <material-toggle-button>top charts</material-toggle-button>
-        <material-toggle-button class="red">top movies</material-toggle-button>
-        <material-toggle-button class="orange">top songs</material-toggle-button>
-        <material-toggle-button class="cyan">top books</material-toggle-button>
-        <material-toggle-button class="indigo">top magazines</material-toggle-button>
-        <material-toggle-button class="fancy">very fancy</material-toggle-button>
+      <h3>Buttons can be styled using custom properties</h3>
+      <demo-snippet class="centered-demo">
+        <template>
+          <material-toggle-button>top charts</material-toggle-button>
+          <material-toggle-button class="red">top movies</material-toggle-button>
+          <material-toggle-button class="orange">top songs</material-toggle-button>
+          <material-toggle-button class="cyan">top books</material-toggle-button>
+          <material-toggle-button class="indigo">top magazines</material-toggle-button>
+          <material-toggle-button class="fancy">very fancy</material-toggle-button>
 
-        <style is="custom-style">
-          material-toggle-button.red {
-            --material-toggle-button-active-color: var(--paper-red-600);
-          }
+          <style is="custom-style">
+            material-toggle-button.red {
+              --material-toggle-button-active-color: var(--paper-red-600);
+            }
 
-          material-toggle-button.orange {
-            --material-toggle-button-active-color: var(--paper-orange-600);
-          }
+            material-toggle-button.orange {
+              --material-toggle-button-active-color: var(--paper-orange-600);
+            }
 
-          material-toggle-button.cyan {
-            --material-toggle-button-active-color: var(--paper-cyan-600);
-          }
+            material-toggle-button.cyan {
+              --material-toggle-button-active-color: var(--paper-cyan-600);
+            }
 
-          material-toggle-button.indigo {
-            --material-toggle-button-active-color: var(--paper-indigo-600);
-          }
+            material-toggle-button.indigo {
+              --material-toggle-button-active-color: var(--paper-indigo-600);
+            }
 
-          material-toggle-button.fancy {
-            text-transform: capitalize;
-            --material-toggle-button-active-color: var(--paper-purple-500);
-            --material-toggle-button-inactive-color: var(--paper-yellow-300);
-          }
-        </style>
-      </template>
-    </demo-snippet>
+            material-toggle-button.fancy {
+              text-transform: capitalize;
+              --material-toggle-button-active-color: var(--paper-purple-500);
+              --material-toggle-button-inactive-color: var(--paper-yellow-300);
+            }
+          </style>
+        </template>
+      </demo-snippet>
 
+    </div>
   </body>
 </html>
