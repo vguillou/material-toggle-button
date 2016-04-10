@@ -19,4 +19,4 @@ Demos available <a href="https://vguillou.github.io/webcomponents/material-toggl
 
 ## License
 
-[MIT License](https://github.com/vguillou/material-toggle-button/blob/master/LICENSE.md)
+[License](https://github.com/vguillou/material-toggle-button/blob/master/LICENSE.md)
