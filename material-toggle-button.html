@@ -7,11 +7,9 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../iron-behaviors/iron-button-state.html">
-<link rel="import" href="../paper-behaviors/paper-ripple-behavior.html">
+<link rel="import" href="../paper-behaviors/paper-inky-focus-behavior.html">
 
 <!--
 `material-toggle-button` is a Material design inspired toggle button.
@@ -48,12 +46,12 @@ Custom property | Description | Default
 `--material-toggle-button-disabled` | Mixin applied to the disabled button toggle. Note that you can also use the `material-toggle-button[disabled]` selector | `{}`
 `--material-toggle-button-keyboard-focus` | Mixin applied to a button toggle after it's been focused using the keyboard | `{}`
 
+@element material-toggle-button
 @demo demo/index.html
 -->
 
 <dom-module id="material-toggle-button">
   <template strip-whitespace>
-
     <style>
       :host {
         display: inline-block;
@@ -66,7 +64,6 @@ Custom property | Description | Default
         background: transparent;
         text-transform: uppercase;
         outline-width: 0;
-        border-radius: 3px;
         -moz-user-select: none;
         -ms-user-select: none;
         -webkit-user-select: none;
@@ -77,13 +74,11 @@ Custom property | Description | Default
         z-index: 0;
         border-radius: 18px;
         padding: 0.4em 1.6em;
-
         -webkit-transition: background 200ms ease-in;
         -moz-transition: background 200ms ease-in;
         -ms-transition: background 200ms ease-in;
         -o-transition: background 200ms ease-in;
         transition: background 200ms ease-in;
-
         @apply(--material-toggle-button);
       }
 
@@ -116,68 +111,69 @@ Custom property | Description | Default
     </style>
     <content></content>
   </template>
+
+  <script>
+  (function() {
+    'use strict';
+    Polymer({
+      is: 'material-toggle-button',
+
+      behaviors: [
+        Polymer.PaperInkyFocusBehavior
+      ],
+
+      observers: [
+        '_computeKeyboardClass(receivedFocusFromKeyboard)'
+      ],
+
+      hostAttributes: {
+        role: 'button',
+        tabindex: '0',
+        toggles: true,
+        raised: false,
+        animated: false,
+        elevation: false
+      },
+
+      _computeKeyboardClass: function(receivedFocusFromKeyboard) {
+        this.classList.toggle('keyboard-focus', receivedFocusFromKeyboard);
+      },
+
+      /**
+       * In addition to `IronButtonState` behavior, when space key goes down,
+       * create a ripple down effect.
+       *
+       * @param {!KeyboardEvent} event .
+       */
+      _spaceKeyDownHandler: function(event) {
+        Polymer.IronButtonStateImpl._spaceKeyDownHandler.call(this, event);
+        if (this.hasRipple()) {
+          this._ripple.uiDownAction();
+        }
+      },
+
+      /**
+       * In addition to `IronButtonState` behavior, when space key goes up,
+       * create a ripple up effect.
+       *
+       * @param {!KeyboardEvent} event .
+       */
+      _spaceKeyUpHandler: function(event) {
+        Polymer.IronButtonStateImpl._spaceKeyUpHandler.call(this, event);
+        if (this.hasRipple()) {
+          this._ripple.uiUpAction();
+        }
+      }
+    
+      /**
+      Fired when the animation finishes.
+      This is useful if you want to wait until
+      the ripple animation finishes to perform some action.
+
+      @event transitionend
+      @param {{node: Object}} detail Contains the animated node.
+      */
+    });
+  })();
+  </script>
 </dom-module>
-
-<script>
-  Polymer({
-    is: 'material-toggle-button',
-
-    behaviors: [
-      Polymer.IronButtonState,
-      Polymer.IronControlState,
-      Polymer.PaperRippleBehavior
-    ],
-
-    observers: [
-      '_computeKeyboardClass(receivedFocusFromKeyboard)'
-    ],
-
-    hostAttributes: {
-      role: 'button',
-      tabindex: '0',
-      toggles: true,
-      raised: false,
-      animated: false,
-      elevation: false
-    },
-
-    _computeKeyboardClass: function(receivedFocusFromKeyboard) {
-      this.classList.toggle('keyboard-focus', receivedFocusFromKeyboard);
-    },
-
-    /**
-     * In addition to `IronButtonState` behavior, when space key goes down,
-     * create a ripple down effect.
-     *
-     * @param {!KeyboardEvent} event .
-     */
-    _spaceKeyDownHandler: function(event) {
-      Polymer.IronButtonStateImpl._spaceKeyDownHandler.call(this, event);
-      if (this.hasRipple()) {
-        this._ripple.uiDownAction();
-      }
-    },
-
-    /**
-     * In addition to `IronButtonState` behavior, when space key goes up,
-     * create a ripple up effect.
-     *
-     * @param {!KeyboardEvent} event .
-     */
-    _spaceKeyUpHandler: function(event) {
-      Polymer.IronButtonStateImpl._spaceKeyUpHandler.call(this, event);
-      if (this.hasRipple()) {
-        this._ripple.uiUpAction();
-      }
-    }
-  
-    /**
-    Fired when the animation finishes.
-    This is useful if you want to wait until
-    the ripple animation finishes to perform some action.
-
-    @event transitionend
-    @param {{node: Object}} detail Contains the animated node.
-    */
-  });
-</script>
