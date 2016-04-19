@@ -1,5 +1,7 @@
 # material-toggle-button
 
+[![GitHub version](https://badge.fury.io/gh/vguillou%2Fmaterial-toggle-button.svg)](https://badge.fury.io/gh/vguillou%2Fmaterial-toggle-button)
+
 _A Material design inspired toggle button. It is based on the original Material design [paper-button](https://elements.polymer-project.org/elements/paper-button) by the Polymer team._
 
 ## Use it in your project :
