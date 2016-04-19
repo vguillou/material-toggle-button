@@ -163,6 +163,13 @@ Custom property | Description | Default
         if (this.hasRipple()) {
           this._ripple.uiUpAction();
         }
+      },
+
+      _createRipple: function() {
+        var ripple = Polymer.PaperRippleBehavior._createRipple();
+        ripple.id = 'ink';
+        ripple.setAttribute('center', '');
+        return ripple;
       }
     
       /**
